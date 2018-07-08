@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GifCard from './components/GifCard';
 import GifViewer from './components/GifViewer';
 import BottomListener from './components/BottomListener';
+import './App.css';
 
 const GIF_EACH_LOAD = 20;
 
@@ -19,10 +20,14 @@ class App extends Component {
   }
 
   handleLoad = () => {
+    if (this.state.loading) {
+      return;
+    }
+
     const API_KEY = process.env.REACT_APP_API_KEY;
     const { nextPage } = this.state;
     let url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`;
-    url += `&limit=${GIF_EACH_LOAD}&offset=${nextPage * GIF_EACH_LOAD + 1}`
+    url += `&limit=${GIF_EACH_LOAD}&offset=${nextPage * GIF_EACH_LOAD}`;
 
     this.setState({ loading: true });
     fetch(url)
@@ -57,7 +62,7 @@ class App extends Component {
   render() {
     const { gifs, isOpenViewer, currentGifIndex } = this.state;
     return (
-      <div>
+      <React.Fragment>
         <div className="card-container">
           {gifs.map((gif, index) => (
             <GifCard
@@ -75,7 +80,7 @@ class App extends Component {
           />
         )}
         <BottomListener onBottom={this.handleLoad} />
-      </div>
+      </React.Fragment>
     );
   }
 }
