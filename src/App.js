@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GifCard from './GifCard';
+import GifCard from './components/GifCard';
 
 class App extends Component {
   state = {
