@@ -32,6 +32,7 @@ class GifCard extends Component {
               src={gif.images.original.url}
               onClick={onGifClick}
               data-index={index}
+              alt="Gif load error"
             />
           </div>
           <GifStats url={gif.url} />
