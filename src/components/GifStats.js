@@ -6,6 +6,7 @@ const GifStats = ({ url }) => {
   const viewCount = Math.floor(Math.random() * 10000 + 1);
   const commentCount = Math.floor(Math.random() * 100 + 1);
   const likeCount = Math.floor(Math.random() * 1000 + 1);
+
   return (
     <div className="stats">
       <div className="link">
@@ -14,9 +15,9 @@ const GifStats = ({ url }) => {
         </a>
       </div>
       <div className="other">
-        <i className="fas fa-eye" /> {viewCount.toLocaleString()}
-        <i className="fas fa-comment" /> {commentCount.toLocaleString()}
-        <i className="fas fa-heart" /> {likeCount.toLocaleString()}
+        <i className="fas fa-eye"> {viewCount.toLocaleString()}</i>
+        <i className="fas fa-comment"> {commentCount.toLocaleString()}</i>
+        <i className="fas fa-heart"> {likeCount.toLocaleString()}</i>
       </div>
     </div>
   );

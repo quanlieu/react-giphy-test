@@ -6,7 +6,7 @@
 }
 
 .stats .link {
-  flex-basis: 25%;
+  flex-basis: 40%;
 }
 
 .stats .link a {
@@ -15,10 +15,38 @@
 }
 
 .stats .other {
-  flex-basis: 75%;
-  text-align: right;
+  flex-basis: 60%;
+  text-align: left;
 }
 
 .stats .other i {
   margin-left: 1em;
+  display: block;
+}
+
+/* Tablet */
+@media (min-width: 600px) {
+  .stats .link {
+    flex-basis: 50%;
+  }
+
+  .stats .other {
+    flex-basis: 50%;
+  }
+}
+
+/* Desktop */
+@media (min-width: 993px) {
+  .stats .link {
+    flex-basis: 20%;
+  }
+
+  .stats .other {
+    flex-basis: 80%;
+    text-align: right;
+  }
+
+  .stats .other i {
+    display: inline-block;
+  }
 }

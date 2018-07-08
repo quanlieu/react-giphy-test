@@ -1,16 +1,33 @@
 .user {
   display: flex;
   align-items: center;
-  margin-left: 1em;
+  flex-wrap: wrap;
+  font-size: 0.8em;
 }
 
 .user img {
   border-radius: 50%;
-  width: 1.5em;
-  height: 1.5em;
+  width: 1em;
+  height: 1em;
   margin: 0 0.5em;
 }
 
 .user a {
   text-decoration: none;
+}
+
+/* Tablet */
+@media (min-width: 600px) {
+  .user {
+    align-items: center;
+    margin-left: 1em;
+    font-size: 1em;
+  }
+
+  .user img {
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 0.5em;
+  }
 }
