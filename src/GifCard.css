@@ -3,16 +3,20 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+.card-outer {
+  margin-bottom: 1em;
+}
 .card-inner {
-  width: 260px;
+  width: 240px;
   background-color: white;
-  margin: 5px;
-  padding: 10px;
+  margin: 0.75em;
+  padding: 0.5em;
   box-sizing: border-box;
   border-radius: 2%;
+  box-shadow: 0 2px 2px silver;
 }
 .img-frame {
-  height: 240px;
+  height: 220px;
   display: flex;
   border-radius: inherit;
 }

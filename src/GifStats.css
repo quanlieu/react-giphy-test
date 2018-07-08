@@ -1,0 +1,24 @@
+.stats {
+  margin-top: 0.5em;
+  color: silver;
+  font-size: 0.8em;
+  display: flex;
+}
+
+.stats .link {
+  flex-basis: 25%;
+}
+
+.stats .link a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.stats .other {
+  flex-basis: 75%;
+  text-align: right;
+}
+
+.stats .other i {
+  margin-left: 1em;
+}

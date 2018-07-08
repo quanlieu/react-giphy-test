@@ -1,0 +1,16 @@
+.user {
+  display: flex;
+  align-items: center;
+  margin-left: 1em;
+}
+
+.user img {
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0 0.5em;
+}
+
+.user a {
+  text-decoration: none;
+}
