@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Lightbox from 'react-images';
 import GifCard from './components/GifCard';
+import GifViewer from './components/GifViewer';
 
 class App extends Component {
   state = {
-    gifs: []
+    gifs: [],
+    isOpenViewer: false
   };
 
   componentDidMount() {
@@ -21,23 +22,37 @@ class App extends Component {
       .catch(err => {});
   }
 
-  handleClickImage = (event) => {
-    console.log(event);
+  handleGifClick = event => {
+    this.setState({
+      isOpenViewer: true,
+      currentGif: event.currentTarget.dataset.index
+    });
+  };
+
+  handleClose = (event) => {
+    this.setState({ isOpenViewer: false });
   };
 
   render() {
+    const { gifs, isOpenViewer, currentGif } = this.state;
     return (
       <div>
         <div className="card-container">
-          {this.state.gifs.map(gif => (
+          {gifs.map((gif, index) => (
             <GifCard
               gif={gif}
               key={gif.id}
-              onImageClick={this.handleClickImage}
+              index={index}
+              onGifClick={this.handleGifClick}
             />
           ))}
         </div>
-        {/* <Lightbox /> */}
+        {isOpenViewer && (
+          <GifViewer
+            url={gifs[currentGif].images.original.url}
+            onClose={this.handleClose}
+          />
+        )}
       </div>
     );
   }

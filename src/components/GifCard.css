@@ -3,9 +3,11 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .card-outer {
   margin-bottom: 1em;
 }
+
 .card-inner {
   width: 240px;
   background-color: white;
@@ -15,11 +17,13 @@
   border-radius: 2%;
   box-shadow: 0 2px 2px silver;
 }
+
 .img-frame {
   height: 220px;
   display: flex;
   border-radius: inherit;
 }
+
 .img-frame > img {
   max-width: 100%;
   max-height: 100%;
@@ -27,4 +31,5 @@
   width: auto;
   margin: auto;
   border-radius: inherit;
+  cursor: pointer;
 }
