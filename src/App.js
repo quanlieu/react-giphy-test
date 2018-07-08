@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
 import GifCard from './components/GifCard';
 import GifViewer from './components/GifViewer';
+import BottomListener from './components/BottomListener';
+
+const GIF_EACH_LOAD = 20;
 
 class App extends Component {
   state = {
     gifs: [],
-    isOpenViewer: false
+    isOpenViewer: false,
+    currentGifIndex: -1,
+    nextPage: 0,
+    loading: false
   };
 
   componentDidMount() {
+    this.handleLoad();
+  }
+
+  handleLoad = () => {
     const API_KEY = process.env.REACT_APP_API_KEY;
-    fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=20`)
+    const { nextPage } = this.state;
+    let url = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`;
+    url += `&limit=${GIF_EACH_LOAD}&offset=${nextPage * GIF_EACH_LOAD + 1}`
+
+    this.setState({ loading: true });
+    fetch(url)
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -18,23 +33,29 @@ class App extends Component {
           throw new Error('Error');
         }
       })
-      .then(json => this.setState((prevState, props) => ({ gifs: json.data })))
+      .then(json =>
+        this.setState((prevState, props) => ({
+          gifs: [...prevState.gifs, ...json.data],
+          loading: false,
+          nextPage: prevState.nextPage + 1
+        }))
+      )
       .catch(err => {});
-  }
+  };
 
   handleGifClick = event => {
     this.setState({
       isOpenViewer: true,
-      currentGif: event.currentTarget.dataset.index
+      currentGifIndex: event.currentTarget.dataset.index
     });
   };
 
-  handleClose = (event) => {
+  handleClose = event => {
     this.setState({ isOpenViewer: false });
   };
 
   render() {
-    const { gifs, isOpenViewer, currentGif } = this.state;
+    const { gifs, isOpenViewer, currentGifIndex } = this.state;
     return (
       <div>
         <div className="card-container">
@@ -49,10 +70,11 @@ class App extends Component {
         </div>
         {isOpenViewer && (
           <GifViewer
-            url={gifs[currentGif].images.original.url}
+            url={gifs[currentGifIndex].images.original.url}
             onClose={this.handleClose}
           />
         )}
+        <BottomListener onBottom={this.handleLoad} />
       </div>
     );
   }
